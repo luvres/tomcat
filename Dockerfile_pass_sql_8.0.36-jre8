@@ -63,7 +63,7 @@ RUN wget -c $MARIADB_CONN_J_URL -O /usr/local/tomcat/lib/$MARIADB_CONN_J
 RUN wget -c $POSTGRES_CONN_J_URL -O /usr/local/tomcat/lib/$POSTGRES_CONN_J
 RUN wget -c $ORACLE_CONN_J_URL -O /usr/local/tomcat/lib/$ORACLE_CONN_J
 
-RUN wget -c $URL/probe.war -O /usr/local/tomcat/webapps/probe.war
+RUN wget -c $URL_JDBC/probe.war -O /usr/local/tomcat/webapps/probe.war
 
 
 # context.xml

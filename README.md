@@ -7,11 +7,11 @@ The script can be run anywhere after downloading:
 
 For construction of the container run the following command with with the necessary parameters:
 
-	sh tomcat_mysql.sh <password Manager Web> <user mysql> <pass user mysql> <db mysql> <user mariadb> <pass user mariadb> <db mariadb> <user postgres> <pass user postgres> <db postgres> <pass user oracle> <pass schema oracle> <tomcat port>
+	sh tomcat_mysql.sh <pass Manager Web> <user mysql> <pass mysql> <db mysql> <user mariadb> <pass mariadb> <db mariadb> <user postgres> <pass postgres> <db postgres> <schema oracle> <pass oracle> <tomcat port>
 
 Example:
 
-	sh tomcat_mysql.sh p4asSwd root PasSroot mysql root PasSroot mysql postgres postgres dbpostgres system oracle 8880
+	sh tomcat_8.0.36_sql.sh P4sSwd userMySQL P4sSwd dbysql userMariaDB P4sSwd dbmariadb userPostgres P4sSwd dbpostgres dboracle P4sSwd 8880
 
 Browser access:
 

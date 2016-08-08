@@ -26,14 +26,14 @@ sed -i "s/ENV USER_ORACLE system/ENV USER_ORACLE ${11}/" Dockerfile_pass_sql_8.0
 sed -i "s/ENV PASS_ORACLE oracle/ENV PASS_ORACLE ${12}/" Dockerfile_pass_sql_8.0.36-jre8
 
 
-docker build -t tomcat${13}:8jre8_datasource -f Dockerfile_pass_sql_8.0.36-jre8 .
+docker build -t tomcat:8jre8_datasource -f Dockerfile_pass_sql_8.0.36-jre8 .
 docker run \
 	--link MySQL:mysql-host \
 	--link MariaDB:mariadb-host \
 	--link PostgreSQL:postgres-host \
 	--link OracleXE:oracle-host \
-	--name Tomcat${13} -p ${13}:8080 \
-	-d tomcat${13}:8jre8_datasource
+	--name Tomcat -p ${13}:8080 \
+	-d tomcat:8jre8_datasource
 
 
 cd .. && rm tomcat-8.0.36 -fR

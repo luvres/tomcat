@@ -20,5 +20,5 @@ Browser access:
 Administration access:
 
 	User Name: admin
-	Password: p4asSwd
+	Password: P4sSwd
 

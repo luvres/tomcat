@@ -11,7 +11,7 @@ For construction of the container run the following command with with the necess
 
 Example:
 
-	sh tomcat_8.0.36_sql.sh P4sSwd userMySQL P4sSwd dbysql userMariaDB P4sSwd dbmariadb userPostgres P4sSwd dbpostgres dboracle P4sSwd 8880
+	sh tomcat_8.0.36_sql.sh P4sSwd userMySQL P4sSdb dbysql userMariaDB P4sSdb dbmariadb userPostgres P4sSdb dbpostgres dboracle P4sSdb 8880
 
 Browser access:
 

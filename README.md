@@ -1,4 +1,4 @@
-# TEST - Tomcat 8.0.36 with the main SQL connectors Java 8 in container Docker
+# Tomcat 8.0.36 with the main SQL connectors Java 8 in container Docker
 
 The script can be run anywhere after downloading:
 

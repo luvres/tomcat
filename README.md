@@ -1,9 +1,23 @@
-# Tomcat 8.0.36 with the main SQL connectors Java 8 in container Docker
+# Tomcat 8
+## Tomcat 8.0.39 with the main SQL connectors Java 8 in container Docker
+### Pull image latest
+```
+docker pull izone/tomcat
+```
+### Run pulled image
+```
+docker run --rm --name Tomcat -h tomcat \
+-p 8080:8080 \
+-e PASS="paSSadm" \
+-ti izone/tomcat
+```
+### Auto Construction
+```
+git clone https://github.com/luvres/tomcat.git
+cd tomcat
 
-The script can be run anywhere after downloading:
-
-	git clone https://github.com/luvres/tomcat-8.0.36.git
-	cd tomcat-8.0.36
+docker build -t izone/tomcat .
+```
 
 For construction of the container run the following command with with the necessary parameters:
 

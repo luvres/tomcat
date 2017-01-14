@@ -20,11 +20,11 @@ ENV POSTGRES_CONN_J_URL $URL_JDBC/$POSTGRES_CONN_J
 ENV ORACLE_CONN_J ojdbc6.jar
 ENV ORACLE_CONN_J_URL $URL_JDBC/$ORACLE_CONN_J
 
-# Alterar limit de upload que é de 50Megas no Tomcat 8
-RUN sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web.xml
-
-RUN sed -i 's/resourceName="UserDatabase"/resourceName="UserDatabase" digest="sha1"/' /usr/local/tomcat/conf/server.xml \
-    && mv /usr/local/tomcat/conf/tomcat-users.xml{,.orig}
+RUN wget -c $MYSQL_CONN_J_URL -O /usr/local/tomcat/lib/$MYSQL_CONN_J \
+    && wget -c $MARIADB_CONN_J_URL -O /usr/local/tomcat/lib/$MARIADB_CONN_J \
+    && wget -c $POSTGRES_CONN_J_URL -O /usr/local/tomcat/lib/$POSTGRES_CONN_J \
+    && wget -c $ORACLE_CONN_J_URL -O /usr/local/tomcat/lib/$ORACLE_CONN_J \
+    && wget -c $URL_JDBC/probe.war -O /usr/local/tomcat/webapps/probe.war
 
 
 ##RUN sed -i 's/<\/tomcat-users>/ /' /usr/local/tomcat/conf/tomcat-users.xml
@@ -63,11 +63,11 @@ ENV DB_POSTGRES postgres
 ENV HOST_POSTGRES postgres-host
 ENV JNDI_POSTGRES JNDI-PostgreSQL
 
-RUN wget -c $MYSQL_CONN_J_URL -O /usr/local/tomcat/lib/$MYSQL_CONN_J \
-    && wget -c $MARIADB_CONN_J_URL -O /usr/local/tomcat/lib/$MARIADB_CONN_J \
-    && wget -c $POSTGRES_CONN_J_URL -O /usr/local/tomcat/lib/$POSTGRES_CONN_J \
-    && wget -c $ORACLE_CONN_J_URL -O /usr/local/tomcat/lib/$ORACLE_CONN_J \
-    && wget -c $URL_JDBC/probe.war -O /usr/local/tomcat/webapps/probe.war
+# Alterar limit de upload que é de 50Megas no Tomcat 8
+RUN sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web.xml
+
+RUN sed -i 's/resourceName="UserDatabase"/resourceName="UserDatabase" digest="sha1"/' /usr/local/tomcat/conf/server.xml \
+    && mv /usr/local/tomcat/conf/tomcat-users.xml{,.orig}
 
 
 ADD start.sh /etc/start.sh

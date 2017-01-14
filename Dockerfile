@@ -6,7 +6,7 @@ ENV PASS admin
 
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master/"
 
-ENV MYSQL_CONN_J_VERSION 5.1.39
+ENV MYSQL_CONN_J_VERSION 5.1.40
 ENV MYSQL_CONN_J mysql-connector-java-$MYSQL_CONN_J_VERSION-bin.jar
 ENV MYSQL_CONN_J_URL $URL_JDBC/$MYSQL_CONN_J
 

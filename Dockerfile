@@ -37,24 +37,24 @@ RUN sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web
 ENV USER_MYSQL root
 ENV PASS_MYSQL pass
 ENV DB_MYSQL dbzone
-ENV MYSQLHOST mysql-host
+ENV HOST_MYSQL mysql-host
 ENV JNDI_MYSQL JNDI-MySQL
 
 ENV USER_MARIADB root
 ENV PASS_MARIADB mariadb
 ENV DB_MARIADB dbzone
-ENV MARIADBHOST mariadb-host
+ENV HOST_MARIADB mariadb-host
 ENV JNDI_MARIADB JNDI-MariaDB
 
 ENV USER_POSTGRES postgres
 ENV PASS_POSTGRES postgres
 ENV DB_POSTGRES postgres
-ENV POSTGRESHOST postgres-host
+ENV HOST_POSTGRES postgres-host
 ENV JNDI_POSTGRES JNDI-PostgreSQL
 
 ENV USER_ORACLE system
 ENV PASS_ORACLE oracle
-ENV ORACLEHOST oracle-host
+ENV HOST_ORACLE oracle-host
 ENV JNDI_ORACLE JNDI-Oracle
 
 
@@ -72,24 +72,24 @@ RUN echo "<Resource name=\"jdbc/$JNDI_MYSQL\" auth=\"Container\"" >>/usr/local/t
 RUN echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
 RUN echo "        username=\"$USER_MYSQL\" password=\"$PASS_MYSQL\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        driverClassName="com.mysql.jdbc.Driver"' >>/usr/local/tomcat/conf/context.xml
-RUN echo "        url=\"jdbc:mysql://$MYSQLHOST:3306/$DB_MYSQL\"/>" >>/usr/local/tomcat/conf/context.xml
+RUN echo "        url=\"jdbc:mysql://$HOST_MYSQL:3306/$DB_MYSQL\"/>" >>/usr/local/tomcat/conf/context.xml
 
 RUN echo "<Resource name=\"jdbc/$JNDI_ORACLE\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
 RUN echo "        username=\"$USER_ORACLE\" password=\"$PASS_ORACLE\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        driverClassName="oracle.jdbc.OracleDriver"' >>/usr/local/tomcat/conf/context.xml
-RUN echo "        url=\"jdbc:oracle:thin:@$ORACLEHOST:1521:XE\"/>" >>/usr/local/tomcat/conf/context.xml
+RUN echo "        url=\"jdbc:oracle:thin:@$HOST_ORACLE:1521:XE\"/>" >>/usr/local/tomcat/conf/context.xml
 
 RUN echo "<Resource name=\"jdbc/$JNDI_MARIADB\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
 RUN echo "        username=\"$USER_MARIADB\" password=\"$PASS_MARIADB\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        driverClassName="org.mariadb.jdbc.Driver"' >>/usr/local/tomcat/conf/context.xml
-RUN echo "        url=\"jdbc:mysql://$MARIADBHOST:3306/$DB_MARIADB\"/>" >>/usr/local/tomcat/conf/context.xml
+RUN echo "        url=\"jdbc:mysql://$HOST_MARIADB:3306/$DB_MARIADB\"/>" >>/usr/local/tomcat/conf/context.xml
 
 RUN echo "<Resource name=\"jdbc/$JNDI_POSTGRES\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
 RUN echo "        username=\"$USER_POSTGRES\" password=\"$PASS_POSTGRES\"" >>/usr/local/tomcat/conf/context.xml
 RUN echo '        driverClassName="org.postgresql.Driver"' >>/usr/local/tomcat/conf/context.xml
-RUN echo "        url=\"jdbc:postgresql://$POSTGRESHOST:5432/$DB_POSTGRES\"/>" >>/usr/local/tomcat/conf/context.xml
+RUN echo "        url=\"jdbc:postgresql://$HOST_POSTGRES:5432/$DB_POSTGRES\"/>" >>/usr/local/tomcat/conf/context.xml
 RUN echo '</Context>' >>/usr/local/tomcat/conf/context.xml
 

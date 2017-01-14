@@ -14,35 +14,60 @@ docker run --rm --name Tomcat -h tomcat \
 ### Enviroments for JDBC Datasource
 ##### MySQL
 ```
--e PORT_MYSQL=3306
--e USER_MYSQL=root
--e PASS_MYSQL=pass
--e DB_MYSQL=dbzone
--e HOST_MYSQL=mysql-host
+docker run --name MySQL -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -d mysql
+
+docker run --rm --name Tomcat -h tomcat \
+-p 8080:8080 \
+--link MySQL:mysql-host \
+-e HOST_MYSQL=mysql-host \
+-e PASS="aamu02" \
+-e PORT_MYSQL=3306 \
+-e USER_MYSQL=root \
+-e PASS_MYSQL=pass \
+-e DB_MYSQL=dbzone \
+-ti izone/tomcat
 ```
 ##### Oracle
 ```
--e PORT_ORACLE=1521
--e USER_ORACLE=system
--e PASS_ORACLE=oracle
--e DB_ORACLE=XE
--e HOST_ORACLE=oracle-host
+docker run -h oraclexe --name OracleXE -p 1521:1521 -d izone/oracle
+
+docker run --rm --name Tomcat -h tomcat \
+-p 8080:8080 \
+--link OracleXE:oracle-host \
+-e HOST_ORACLE=oracle-host z
+-e PORT_ORACLE=1521 \
+-e USER_ORACLE=system \
+-e PASS_ORACLE=oracle \
+-e DB_ORACLE=XE \
+-ti izone/tomcat
 ```
 ##### MariaDB
 ```
--e PORT_MARIADB=3306
--e USER_MARIADB=root
--e PASS_MARIADB=maria
--e DB_MARIADB=dbzone
--e HOST_MARIADB=mariadb-host
+docker run --name MariaDB -p 3308:3306 -e MYSQL_ROOT_PASSWORD=maria -d mariadb
+
+docker run --rm --name Tomcat -h tomcat \
+-p 8080:8080 \
+--link MariaDB:mariadb-host \
+-e HOST_MARIADB=mariadb-host \
+-e PORT_MARIADB=3306 \
+-e USER_MARIADB=root \
+-e PASS_MARIADB=maria \
+-e DB_MARIADB=dbzone \
+-ti izone/tomcat
 ```
 ##### Postgres
 ```
--e PORT_POSTGRES=5432
--e USER_POSTGRES=postgres
--e PASS_POSTGRES=postgres
--e DB_POSTGRES=postgres
--e HOST_POSTGRES=postgres-host
+docker run --name PostgreSQL -p 5432:5432 -e POSTGRES_PASSWORD=postgres -d postgres:9.5.5
+
+docker run --rm --name Tomcat -h tomcat \
+-p 8080:8080 \
+--link PostgreSQL:postgres-host \
+-e HOST_POSTGRES=postgres-host \
+-e PORT_POSTGRES=5432 \
+-e USER_POSTGRES=postgres \
+-e PASS_POSTGRES=postgres \
+-e DB_POSTGRES=postgres \
+-ti izone/tomcat
 ```
 
 ### Auto Construction

@@ -1,4 +1,5 @@
 FROM openjdk:8-jre-alpine
+MAINTAINER Leonardo Loures <luvres@hotmail.com>
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH

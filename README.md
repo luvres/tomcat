@@ -8,13 +8,48 @@ docker pull izone/tomcat
 ```
 docker run --rm --name Tomcat -h tomcat \
 -p 8080:8080 \
--e PASS="paSSadm" \
+-e PASS="aamu02" \
 -ti izone/tomcat
 ```
+### Enviroments for JDBC Datasource
+##### MySQL
+```
+-e PORT_MYSQL=3306
+-e USER_MYSQL=root
+-e PASS_MYSQL=pass
+-e DB_MYSQL=dbzone
+-e HOST_MYSQL=mysql-host
+```
+##### Oracle
+```
+-e PORT_ORACLE=1521
+-e USER_ORACLE=system
+-e PASS_ORACLE=oracle
+-e DB_ORACLE=XE
+-e HOST_ORACLE=oracle-host
+```
+##### MariaDB
+```
+-e PORT_MARIADB=3306
+-e USER_MARIADB=root
+-e PASS_MARIADB=maria
+-e DB_MARIADB=dbzone
+-e HOST_MARIADB=mariadb-host
+```
+##### Postgres
+```
+-e PORT_POSTGRES=5432
+-e USER_POSTGRES=postgres
+-e PASS_POSTGRES=postgres
+-e DB_POSTGRES=postgres
+-e HOST_POSTGRES=postgres-host
+```
+
 ### Auto Construction
 ```
 git clone https://github.com/luvres/tomcat.git
 cd tomcat
+
 
 docker build -t izone/tomcat .
 ```

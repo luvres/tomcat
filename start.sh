@@ -12,6 +12,7 @@ admin(){
 
 # context.xml
 config(){
+  cp /usr/local/tomcat/conf/context.xml.orig /usr/local/tomcat/conf/context.xml
   sed -i 's/<\/Context>//' /usr/local/tomcat/conf/context.xml
   echo "<Resource name=\"jdbc/$JNDI_MYSQL\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
   echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
@@ -23,7 +24,7 @@ config(){
   echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
   echo "        username=\"$USER_ORACLE\" password=\"$PASS_ORACLE\"" >>/usr/local/tomcat/conf/context.xml
   echo '        driverClassName="oracle.jdbc.OracleDriver"' >>/usr/local/tomcat/conf/context.xml
-  echo "        url=\"jdbc:oracle:thin:@$HOST_ORACLE:1521:$DB_ORACLE\"/>" >>/usr/local/tomcat/conf/context.xml
+  echo "        url=\"jdbc:oracle:thin:@$HOST_ORACLE:$PORT_ORACLE:$DB_ORACLE\"/>" >>/usr/local/tomcat/conf/context.xml
 
   echo "<Resource name=\"jdbc/$JNDI_MARIADB\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
   echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml
@@ -38,3 +39,6 @@ config(){
   echo "        url=\"jdbc:postgresql://$HOST_POSTGRES:$PORT_POSTGRES/$DB_POSTGRES\"/>" >>/usr/local/tomcat/conf/context.xml
   echo '</Context>' >>/usr/local/tomcat/conf/context.xml
 };config
+
+
+catalina.sh run

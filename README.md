@@ -1,5 +1,6 @@
 # Tomcat 8
 ## Tomcat 8.0.39 with the main SQL connectors Java 8 in container Docker
+-----
 ### Pull image latest
 ```
 docker pull izone/tomcat
@@ -24,7 +25,7 @@ docker run --rm --name Tomcat -h tomcat \
 -e PORT_MYSQL=3306 \
 -e USER_MYSQL=root \
 -e PASS_MYSQL=pass \
--e DB_MYSQL=dbzone \
+-e DB_MYSQL=mysql \
 -ti izone/tomcat
 ```
 ##### Oracle
@@ -52,7 +53,7 @@ docker run --rm --name Tomcat -h tomcat \
 -e PORT_MARIADB=3306 \
 -e USER_MARIADB=root \
 -e PASS_MARIADB=maria \
--e DB_MARIADB=dbzone \
+-e DB_MARIADB=mysql \
 -ti izone/tomcat
 ```
 ##### Postgres
@@ -69,7 +70,24 @@ docker run --rm --name Tomcat -h tomcat \
 -e DB_POSTGRES=postgres \
 -ti izone/tomcat
 ```
+-----
+### Browser access:
+```
+http://localhost:8080/
+```
+##### Administration access:
+```
+http://localhost:8080/manager/html
 
+User Name: admin
+Password: admin
+
+http://localhost:8080/probe/
+   Data Sources
+      jdbc/JNDI-MariaDB
+         Test connection
+```
+-----
 ### Auto Construction
 ```
 git clone https://github.com/luvres/tomcat.git

@@ -35,13 +35,13 @@ RUN sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web
 
 ### Datasource
 ENV USER_MYSQL root
-ENV PASS_MYSQL pass
+ENV PASS_MYSQL root
 ENV DB_MYSQL dbzone
 ENV HOST_MYSQL mysql-host
 ENV JNDI_MYSQL JNDI-MySQL
 
 ENV USER_MARIADB root
-ENV PASS_MARIADB mariadb
+ENV PASS_MARIADB maria
 ENV DB_MARIADB dbzone
 ENV HOST_MARIADB mariadb-host
 ENV JNDI_MARIADB JNDI-MariaDB

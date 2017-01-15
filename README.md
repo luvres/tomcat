@@ -9,7 +9,7 @@ docker pull izone/tomcat
 ```
 docker run --rm --name Tomcat -h tomcat \
 -p 8080:8080 \
--e PASS="aamu02" \
+-e PASS="admin" \
 -ti izone/tomcat
 ```
 ### Enviroments for JDBC Datasource

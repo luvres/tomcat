@@ -9,7 +9,6 @@ docker pull izone/tomcat
 ```
 docker run --rm --name Tomcat -h tomcat \
 -p 8080:8080 \
--e PASS="admin" \
 -ti izone/tomcat
 ```
 ### Enviroments for JDBC Datasource
@@ -19,8 +18,8 @@ docker run --name MySQL -h mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -d mys
 
 docker run --rm --name Tomcat -h tomcat \
 --link MySQL:mysql-host \
+-e PASS="admin" \
 -e HOST_MYSQL=mysql-host \
--e PASS="aamu02" \
 -e PORT_MYSQL=3306 \
 -e USER_MYSQL=root \
 -e PASS_MYSQL=pass \
@@ -34,6 +33,7 @@ docker run --name OracleXE -h oraclexe -p 1521:1521 -d izone/oracle
 
 docker run --rm --name Tomcat -h tomcat \
 --link OracleXE:oracle-host \
+-e PASS="admin" \
 -e HOST_ORACLE=oracle-host \
 -e PORT_ORACLE=1521 \
 -e USER_ORACLE=system \
@@ -48,6 +48,7 @@ docker run --name MariaDB -p 3308:3306 -e MYSQL_ROOT_PASSWORD=maria -d mariadb
 
 docker run --rm --name Tomcat -h tomcat \
 --link MariaDB:mariadb-host \
+-e PASS="admin" \
 -e HOST_MARIADB=mariadb-host \
 -e PORT_MARIADB=3306 \
 -e USER_MARIADB=root \
@@ -63,6 +64,7 @@ docker run --name PostgreSQL -h postgres \
 
 docker run --rm --name Tomcat -h tomcat \
 --link PostgreSQL:postgres-host \
+-e PASS="admin" \
 -e HOST_POSTGRES=postgres-host \
 -e PORT_POSTGRES=5432 \
 -e USER_POSTGRES=postgres \

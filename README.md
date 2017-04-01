@@ -1,5 +1,5 @@
 ## Tomcat 8
-### Tomcat 8.0.39 with the main SQL connectors Java 8
+### Tomcat 8.0.42 with the main SQL connectors Java 8
 -----
 ### Pull image latest
 ```

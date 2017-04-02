@@ -1,5 +1,4 @@
 FROM openjdk:8-jre-alpine
-MAINTAINER Leonardo Loures <luvres@hotmail.com>
 
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
@@ -10,7 +9,7 @@ WORKDIR $CATALINA_HOME
 ENV TOMCAT_NATIVE_LIBDIR $CATALINA_HOME/native-jni-lib
 ENV LD_LIBRARY_PATH ${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$TOMCAT_NATIVE_LIBDIR
 
-RUN apk add --no-cache gnupg openssl
+RUN apk add --no-cache gnupg
 
 # see https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/KEYS
 # see also "update.sh" (https://github.com/docker-library/tomcat/blob/master/update.sh)
@@ -23,7 +22,7 @@ RUN set -ex; \
 ENV TOMCAT_MAJOR 8
 ENV TOMCAT_VERSION 8.0.42
 
-# https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735424#comment-14735424
+# https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735394#comment-14735394
 ENV TOMCAT_TGZ_URL https://www.apache.org/dyn/closer.cgi?action=download&filename=tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 # not all the mirrors actually carry the .asc files :'(
 ENV TOMCAT_ASC_URL https://www.apache.org/dist/tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz.asc
@@ -82,7 +81,7 @@ RUN set -e \
 	&& if ! echo "$nativeLines" | grep 'INFO: Loaded APR based Apache Tomcat Native library' >&2; then \
 		echo >&2 "$nativeLines"; \
 		exit 1; \
-	fi
+fi
 
 # Change upload limit that is 50Megas in Tomcat 8
 RUN sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web.xml
@@ -110,7 +109,8 @@ ENV POSTGRES_CONN_J_URL $URL_JDBC/$POSTGRES_CONN_J
 ENV ORACLE_CONN_J ojdbc6.jar
 ENV ORACLE_CONN_J_URL $URL_JDBC/$ORACLE_CONN_J
 
-RUN wget -c $MYSQL_CONN_J_URL -O /usr/local/tomcat/lib/$MYSQL_CONN_J \
+RUN apk add --no-cache --virtual openssl \
+    && wget -c $MYSQL_CONN_J_URL -O /usr/local/tomcat/lib/$MYSQL_CONN_J \
     && wget -c $MARIADB_CONN_J_URL -O /usr/local/tomcat/lib/$MARIADB_CONN_J \
     && wget -c $POSTGRES_CONN_J_URL -O /usr/local/tomcat/lib/$POSTGRES_CONN_J \
     && wget -c $ORACLE_CONN_J_URL -O /usr/local/tomcat/lib/$ORACLE_CONN_J \

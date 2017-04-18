@@ -20,7 +20,7 @@ RUN set -ex; \
 	done
 
 ENV TOMCAT_MAJOR 8
-ENV TOMCAT_VERSION 8.0.42
+ENV TOMCAT_VERSION 8.0.43
 
 # https://issues.apache.org/jira/browse/INFRA-8753?focusedCommentId=14735394#comment-14735394
 ENV TOMCAT_TGZ_URL https://www.apache.org/dyn/closer.cgi?action=download&filename=tomcat/tomcat-$TOMCAT_MAJOR/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
@@ -95,11 +95,11 @@ RUN sed -i 's/resourceName="UserDatabase"/resourceName="UserDatabase" digest="sh
 # Connectors Java
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master"
 
-ENV MYSQL_CONN_J_VERSION 5.1.40
+ENV MYSQL_CONN_J_VERSION 5.1.41
 ENV MYSQL_CONN_J mysql-connector-java-$MYSQL_CONN_J_VERSION-bin.jar
 ENV MYSQL_CONN_J_URL $URL_JDBC/$MYSQL_CONN_J
 
-ENV MARIADB_CONN_J_VERSION 1.4.6
+ENV MARIADB_CONN_J_VERSION 1.5.9
 ENV MARIADB_CONN_J mariadb-java-client-$MARIADB_CONN_J_VERSION.jar
 ENV MARIADB_CONN_J_URL $URL_JDBC/$MARIADB_CONN_J
 

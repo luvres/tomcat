@@ -95,15 +95,15 @@ RUN sed -i 's/resourceName="UserDatabase"/resourceName="UserDatabase" digest="sh
 # Connectors Java
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master"
 
-ENV MYSQL_CONN_J_VERSION 5.1.41
+ENV MYSQL_CONN_J_VERSION 5.1.44
 ENV MYSQL_CONN_J mysql-connector-java-$MYSQL_CONN_J_VERSION-bin.jar
 ENV MYSQL_CONN_J_URL $URL_JDBC/$MYSQL_CONN_J
 
-ENV MARIADB_CONN_J_VERSION 1.5.9
+ENV MARIADB_CONN_J_VERSION 2.2.0
 ENV MARIADB_CONN_J mariadb-java-client-$MARIADB_CONN_J_VERSION.jar
 ENV MARIADB_CONN_J_URL $URL_JDBC/$MARIADB_CONN_J
 
-ENV POSTGRES_CONN_J postgresql-9.4.1212.jar
+ENV POSTGRES_CONN_J postgresql-42.1.4.jar
 ENV POSTGRES_CONN_J_URL $URL_JDBC/$POSTGRES_CONN_J
 
 ENV ORACLE_CONN_J ojdbc6.jar

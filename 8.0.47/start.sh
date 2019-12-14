@@ -9,7 +9,7 @@ admin(){
   echo '  <role rolename="admin"/>' >>/usr/local/tomcat/conf/tomcat-users.xml
   echo '  <role rolename="manager"/>' >>/usr/local/tomcat/conf/tomcat-users.xml
   echo '  <role rolename="manager-gui"/>' >>/usr/local/tomcat/conf/tomcat-users.xml
-  echo "  <user username=\"admin\" password=\"$PASS\" roles=\"tomcat,role1,admin,manager,manager-gui\"/>" >>/usr/local/tomcat/conf/tomcat-users.xml
+  echo "  <user username=\"admin\" password=\"`/usr/local/tomcat/bin/digest.sh -a sha1 \$PASS | awk -F ":" '{print \$2}'`\" roles=\"manager-gui,admin-gui\"/>" >>/usr/local/tomcat/conf/tomcat-users.xml
   echo '</tomcat-users>' >>/usr/local/tomcat/conf/tomcat-users.xml
   mkdir -p /usr/local/tomcat/conf/Catalina/localhost
   echo '<Context privileged="true" antiResourceLocking="false" ' >>/usr/local/tomcat/conf/Catalina/localhost/manager.xml

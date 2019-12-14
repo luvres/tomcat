@@ -1,4 +1,4 @@
-FROM tomcat:9-jdk11-openjdk-slim
+FROM tomcat:jdk11-openjdk-slim
 
 # Connectors Java
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master"

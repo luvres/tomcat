@@ -1,5 +1,5 @@
-## Tomcat 9
-### Tomcat 9.0.30 with the main SQL connectors Java 
+## Tomcat 8
+### Tomcat 8.0.47 with the main SQL connectors Java 8
 -----
 ### Pull image latest
 ```

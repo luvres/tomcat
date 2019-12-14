@@ -27,18 +27,35 @@ docker run --rm --name Tomcat -h tomcat \
 -p 8080:8080 \
 -ti izone/tomcat
 ```
-##### Oracle
+#### Oracle
+
+##### 11g
 ```
-docker run --name OracleXE -h oraclexe -p 1521:1521 -d izone/oracle
+docker run --name Oracle -h oracle -p 1521:1521 -d izone/oracle
 
 docker run --rm --name Tomcat -h tomcat \
---link OracleXE:oracle-host \
+--link Oracle:oracle-host \
 -e PASS="admin" \
 -e HOST_ORACLE=oracle-host \
 -e PORT_ORACLE=1521 \
 -e USER_ORACLE=system \
 -e PASS_ORACLE=oracle \
 -e DB_ORACLE=XE \
+-p 8080:8080 \
+-ti izone/tomcat
+```
+##### 12c
+```
+docker run --name Oracle -h oracle -p 1521:1521 -d izone/oracle:12.2.0.1-ee
+
+docker run --rm --name Tomcat -h tomcat \
+--link Oracle:oracle-host \
+-e PASS="admin" \
+-e HOST_ORACLE=oracle-host \
+-e PORT_ORACLE=1521 \
+-e USER_ORACLE=system \
+-e PASS_ORACLE=oracle \
+-e DB_ORACLE=ORCLCDB \
 -p 8080:8080 \
 -ti izone/tomcat
 ```

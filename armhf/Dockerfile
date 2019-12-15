@@ -1,4 +1,5 @@
 FROM arm32v7/tomcat:9-jdk11-adoptopenjdk-hotspot
+
 # Connectors Java
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master"
 

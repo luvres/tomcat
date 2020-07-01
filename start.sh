@@ -2,7 +2,7 @@
 
 # Admin
 admin(){
-  cp /usr/local/tomcat/conf/tomcat-users.xml.orig /usr/local/tomcat/conf/tomcat-users.xml
+  #cp /usr/local/tomcat/conf/tomcat-users.xml.orig /usr/local/tomcat/conf/tomcat-users.xml
   sed -i 's/<\/tomcat-users>/ /' /usr/local/tomcat/conf/tomcat-users.xml
   echo '  <role rolename="tomcat"/>' >>/usr/local/tomcat/conf/tomcat-users.xml
   echo '  <role rolename="role1"/>' >>/usr/local/tomcat/conf/tomcat-users.xml
@@ -21,7 +21,7 @@ admin(){
 
 # context.xml
 config(){
-  cp /usr/local/tomcat/conf/context.xml.orig /usr/local/tomcat/conf/context.xml
+  #cp /usr/local/tomcat/conf/context.xml.orig /usr/local/tomcat/conf/context.xml
   sed -i 's/<\/Context>//' /usr/local/tomcat/conf/context.xml
   echo "<Resource name=\"jdbc/$JNDI_MYSQL\" auth=\"Container\"" >>/usr/local/tomcat/conf/context.xml
   echo '        type="javax.sql.DataSource"' >>/usr/local/tomcat/conf/context.xml

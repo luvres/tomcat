@@ -3,15 +3,15 @@ FROM tomcat:9-jdk11-openjdk-slim
 # Connectors Java
 ENV URL_JDBC="https://github.com/luvres/jdbc/raw/master"
 
-ENV MYSQL_CONN_J_VERSION=8.0.18
+ENV MYSQL_CONN_J_VERSION=8.0.20
 ENV MYSQL_CONN_J mysql-connector-java-$MYSQL_CONN_J_VERSION.jar
 ENV MYSQL_CONN_J_URL $URL_JDBC/$MYSQL_CONN_J
 
-ENV MARIADB_CONN_J_VERSION 2.5.2
+ENV MARIADB_CONN_J_VERSION 2.6.1
 ENV MARIADB_CONN_J mariadb-java-client-$MARIADB_CONN_J_VERSION.jar
 ENV MARIADB_CONN_J_URL $URL_JDBC/$MARIADB_CONN_J
 
-ENV POSTGRES_CONN_J postgresql-42.2.9.jar
+ENV POSTGRES_CONN_J postgresql-42.2.14.jar
 ENV POSTGRES_CONN_J_URL $URL_JDBC/$POSTGRES_CONN_J
 
 ENV ORACLE_CONN_J ojdbc6.jar
@@ -56,6 +56,9 @@ RUN \
 	apt-get update \
 	&& apt-get install -y \
 		wget \
+  \
+  && rmdir /usr/local/tomcat/webapps \
+  && mv /usr/local/tomcat/webapps.dist webapps \
   \
   # Change upload limit that is 50Megas in Tomcat 8
 	&& sed -i 's/52428800/104857600/' /usr/local/tomcat/webapps/manager/WEB-INF/web.xml \

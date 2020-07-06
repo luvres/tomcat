@@ -51,6 +51,7 @@ ENV \
 	HOST_POSTGRES=postgres-host \
 	JNDI_POSTGRES=JNDI-PostgreSQL
 
+ADD start.sh /etc/start.sh
 
 RUN \
 	apt-get update \
@@ -67,10 +68,11 @@ RUN \
 	&& wget -c $MARIADB_CONN_J_URL -O /usr/local/tomcat/lib/$MARIADB_CONN_J \
 	&& wget -c $POSTGRES_CONN_J_URL -O /usr/local/tomcat/lib/$POSTGRES_CONN_J \
 	&& wget -c $ORACLE_CONN_J_URL -O /usr/local/tomcat/lib/$ORACLE_CONN_J \
-	&& wget -c $URL_JDBC/probe.war -O /usr/local/tomcat/webapps/probe.war
-
+	&& wget -c $URL_JDBC/probe.war -O /usr/local/tomcat/webapps/probe.war \
+	\
+	&& sh /etc/start.sh
 
 EXPOSE 8080
 
-ADD start.sh /etc/start.sh
-CMD ["sh", "/etc/start.sh"]
+CMD catalina.sh run
+

@@ -49,5 +49,3 @@ config(){
   echo '</Context>' >>/usr/local/tomcat/conf/context.xml
 };config
 
-
-catalina.sh run
